@@ -1,29 +1,36 @@
 import sys
-from collections import deque
-sys.setrecursionlimit(10**9)   
 
-input = sys.stdin.readline
-n,m,r = map(int,input().split())
-# 간선이 없는 노드(정점)가 있을수도 있기에 for 문으로 tree 맹글어줌
-tree, visited = {i:[] for i in range(1,n+1)}, {i:0 for i in range(1,n+1)}
-# 양방향 tree 생성
-for _ in range(m):
-    a,b = map(int,input().split())
-    tree[a].append(b)
-    tree[b].append(a)
-# 정점별 노드 내림차순으로 정렬 후 스택으로 변경
-for k,v in tree.items():
-    tree[k] = deque(sorted(v, reverse=True))
-# tree 탐지 함수 생성
-cnt = 1
-def dfs(node):
+sys.setrecursionlimit(10 ** 8)
+
+
+def dfs(v):
     global cnt
-    visited[node]=cnt
-    while tree[node]:
-        tmp_node = tree[node].popleft()
-        if (not visited[tmp_node]):
+    visited[v] = True
+
+    # 4번은 2번째 방문, 3번은 3번째 방문, 2번은 4번째 방문
+    # 카운트는 1씩 증가하는데.. 2번째일 때, 4번을 방문하므로, answer[4] = 2와 같다.
+    answer[v] = cnt
+    # 내림차순 정렬
+    graph[v].sort(reverse=True)
+    for i in graph[v]:
+        if not visited[i]:
             cnt += 1
-            dfs(tmp_node)
+            dfs(i)
+
+
+n, m, r = map(int, sys.stdin.readline().split())
+
+graph = [[] for _ in range(n + 1)]
+visited = [False] * (n + 1)
+answer = [0] * (n + 1)
+cnt = 1
+
+for _ in range(m):
+    x, y = map(int, sys.stdin.readline().split())
+    graph[x].append(y)
+    graph[y].append(x)
+
 dfs(r)
-for v in visited.values():
-    print(v)
+
+for val in answer[1:]:
+    print(val)
