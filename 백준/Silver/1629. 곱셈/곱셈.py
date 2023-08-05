@@ -11,5 +11,5 @@ while i <= b:
 ans = 1
 for rest,i in zip(rests,bin(b)[2:][::-1]): # b의 2진법을 뒤집었다.
     if int(i):
-        ans *= (rest*int(i))%c
-print(ans%c)
+        ans = (ans*(rest*int(i))%c)%c
+print(ans)
