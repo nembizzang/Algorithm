@@ -1,6 +1,7 @@
 import sys
 from collections import deque
 input = sys.stdin.readline
+sys.setrecursionlimit(10 ** 8)
 
 # dfs 함수 생성
 def dfs(row,col):
