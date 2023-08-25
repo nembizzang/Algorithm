@@ -1,29 +1,25 @@
 import sys
-sys.setrecursionlimit(10 ** 8)
+from collections import deque
 input = sys.stdin.readline
 
-def dfs(sx, sy):
-    # 도착 지점에 도달하면 1(한 가지 경우의 수)를 리턴
-    if sx == m-1 and sy == n-1:
+# dfs 함수 생성
+def dfs(row,col):
+    if (row==m-1) and (col==n-1) : # 도착했을 경우
         return 1
-
-    # 이미 방문한 적이 있다면 그 위치에서 출발하는 경우의 수를 리턴
-    if dp[sx][sy] != -1:
-        return dp[sx][sy]
     
-    ways = 0
-    for i in range(4):
-        nx, ny = sx + dx[i], sy + dy[i]
-        if 0 <= nx < m and 0 <= ny < n and graph[sx][sy] > graph[nx][ny]:
-            ways += dfs(nx, ny)
+    if dp[row][col] != -1 : # 방문한 적 있을 경우
+        return dp[row][col] # 더이상 진행하지 않고 해당 경로에서 가능한 경로 수를 반환
     
-    dp[sx][sy] = ways
-    return dp[sx][sy]
+    cnt = 0 # 해당 칸에서 도착 가능한 모든 경로의 수를 담는다.
+    for i in range(4): # 상하좌우 이동
+        nrow,ncol = row+drow[i], col+dcol[i] # 이동할 칸 초기화
+        if 0<=nrow<m and 0<=ncol<n and maps[row][col] > maps[nrow][ncol]: # 이동가능하면
+            cnt += dfs(nrow,ncol) # dfs 진행한 결과 중 도착 가능한 수를 담음
+    dp[row][col] = cnt
+    return dp[row][col] # 해당 칸에서 모든 확인이 끝났다면 해당 칸에서 도착 가능한 경로 수를 반환
 
-
-m, n = map(int, input().split())
-graph = [list(map(int, input().split())) for _ in range(m)]
-dp = [[-1] * n for _ in range(m)]
-dx, dy = [1,-1,0,0], [0,0,1,-1]
-
+m,n = map(int,input().split())
+maps = [list(map(int,input().split())) for _ in range(m)]
+dp = [[-1]*n for _ in range(m)] # 0으로 해주면 도착 가능 경로 수가 0회인 곳과 미방문 지역을 구분 불가
+drow,dcol = [-1,1,0,0], [0,0,-1,1]
 print(dfs(0,0))
