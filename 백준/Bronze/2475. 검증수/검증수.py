@@ -1,0 +1,1 @@
+print(sum(map(lambda x : (x**2), map(int,open(0).read().split())))%10)
