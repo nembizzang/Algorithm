@@ -1,20 +1,9 @@
 import sys
 input = sys.stdin.readline
-
 n,m = map(int,input().split())
-
-nl = {}
-ans = []
-ans_n = 0
-for _ in range(n):
-    name = input().strip()
-    nl[name] = name
-for _ in range(m):
-    try :
-        ans.append(nl[input().strip()])
-        ans_n += 1
-    except :
-        pass
-print(ans_n)
-for i in sorted(ans):
+no_listen = set([input().strip() for _ in range(n)])
+no_see = set([input().strip() for _ in range(m)])
+no_listen_see = no_listen & no_see
+print(len(no_listen_see))
+for i in sorted(no_listen_see):
     print(i)
