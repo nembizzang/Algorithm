@@ -14,9 +14,7 @@ def bfs():
                     visited[new] = cnt # 최소 방문 횟수 초기화
                     if new == 100 : # 도착 했다면
                         return cnt
-                    if new != 100 : # 도착한 것이 아니라면
-                        heappush(heap,[cnt,new]) # 새롭게 이동
-    return visited[100]
+                    heappush(heap,[cnt,new]) # 새롭게 이동
 n,m = map(int,input().split())
 mov,visited = {},{} # 이동하는 칸(뱀,사다리), 해당 칸 최소 방문 횟수
 for i in range(1,101):
