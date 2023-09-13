@@ -17,10 +17,10 @@ goal = []
 for i in range(n):
     row = list(map(int,input().split()))
     maps.append(row)
-    try : goal += [i,row.index(2)]
-    except : continue
-    # if 2 in row :
-    #    goal += [i,row.index(2)]
+    #try : goal += [i,row.index(2)]
+    #except : continue
+    if 2 in row :
+        goal += [i,row.index(2)]
 visited = [[n*m]*m for _ in range(n)]
 visited[goal[0]][goal[1]]=0
 dy,dx = [-1,1,0,0],[0,0,-1,1]
