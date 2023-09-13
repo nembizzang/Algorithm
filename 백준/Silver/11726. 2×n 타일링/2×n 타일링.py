@@ -1,7 +1,3 @@
-import sys
-input = sys.stdin.readline
-n = int(input())
-dp = {0:1,1:1}
-for i in range(2,n+1):
-    dp[i] = dp[i-2]+dp[i-1]
-print((dp[n])%10007)
+a=b=1
+for _ in range(int(input())-1):a,b=b,a+b
+print(b%10007)
