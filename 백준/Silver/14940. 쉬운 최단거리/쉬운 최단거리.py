@@ -17,8 +17,6 @@ goal = []
 for i in range(n):
     row = list(map(int,input().split()))
     maps.append(row)
-    #try : goal += [i,row.index(2)]
-    #except : continue
     if 2 in row :
         goal += [i,row.index(2)]
 visited = [[n*m]*m for _ in range(n)]
