@@ -1,10 +1,8 @@
 '''
-numbers를 for 반복문으로 하나씩 확인
-stack이 비었거나, 이번 num이 stack[0]보다 작으면
-    해당 num의 인덱스도 stack appendleft. (제일 오른편 수의 뒷 큰수부터 찾아야하므로)
-이번 num이 stack[0]보다 크면 :
-    stack이 비거나 stack[0]이 num보다 클 때까지 ans[stack.popleft] = num
-    이후 num의 뒷 큰수도 찾아야하므로 num의 인덱스를 stack appendleft
+stack에 0을 채우고 시작
+numbers[1]부터 for 반복문으로 하나씩 확인
+이번 num이 stack[0]보다 작으면 해당 num의 인덱스도 stack appendleft. (제일 오른편 수의 뒷 큰수부터 찾아야하므로)
+이번 num이 stack[0]보다 크면 stack이 비거나 stack[0]이 num보다 클 때까지 ans[stack.popleft] = num
 for 문이 종료되고 stack에 남은 인덱스들은 뒷 큰수를 못 찾았으므로 -1로 넣어준다.
 '''
 from collections import deque
