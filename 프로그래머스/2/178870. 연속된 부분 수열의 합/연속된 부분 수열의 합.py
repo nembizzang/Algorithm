@@ -13,16 +13,13 @@ def solution(sequence, k):
     sta_idx = 0 # 부분 수열 시작 인덱스
     for end_idx in range(len(sequence)):
         cur_sum += sequence[end_idx]
-        while sta_idx <= end_idx: # 첫 인덱스를 하나씩 키워가며 확인
-            # k와 같은 경우
+        # cur_sum이 k보다 작은 경우 : 끝 인덱스를 늘려서 다음 경우 확인(while 문 진입 안함)
+        while sta_idx <= end_idx and cur_sum >= k: # 첫 인덱스를 하나씩 키워가며 확인
+            # k와 같은 경우 : ans 초기화 후 다음 경우 확인(for 문 진행)
             if cur_sum == k and ans[1]-ans[0] > end_idx-sta_idx: # 더 짧은 부분 수열 확인
                 ans = [sta_idx,end_idx] # 정답 초기화
                 break # 끝 인덱스를 늘려서 다음 경우 확인
-            # k보다 작은 경우
-            if cur_sum < k:
-                break # 끝 인덱스를 늘려서 다음 경우 확인
-            # k보다 큰 경우
+            # k보다 큰 경우 : 첫 인덱스를 늘려서 다음 경우 확인(while문 진행)        
             cur_sum -= sequence[sta_idx] # 부분 수열 합 줄이기
             sta_idx += 1
-            continue # 첫 인덱스를 늘려서 다음 경우 확인(while문 진행)         
     return ans
