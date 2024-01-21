@@ -4,7 +4,5 @@
 3) 몫이 0이면 return [-1]
 '''
 def solution(n, s):
-    if n==1:
-        return [s]
     t,r = divmod(s,n)
     return [t]*(n-r)+[t+1]*r if t else [-1]
