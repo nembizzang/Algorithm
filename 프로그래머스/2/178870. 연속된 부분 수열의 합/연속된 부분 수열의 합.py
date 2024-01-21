@@ -21,8 +21,8 @@ def solution(sequence, k):
             # k보다 작은 경우
             if cur_sum < k:
                 break # 끝 인덱스를 늘려서 다음 경우 확인
-            else : # k보다 큰 경우
-                cur_sum -= sequence[sta_idx] # 부분 수열 합 줄이기
-                sta_idx += 1
-                continue # 첫 인덱스를 늘려서 다음 경우 확인(while문 진행)         
+            # k보다 큰 경우
+            cur_sum -= sequence[sta_idx] # 부분 수열 합 줄이기
+            sta_idx += 1
+            continue # 첫 인덱스를 늘려서 다음 경우 확인(while문 진행)         
     return ans
