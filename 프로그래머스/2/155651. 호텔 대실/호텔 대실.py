@@ -32,5 +32,4 @@ def solution(book_time):
         else: # 방 추가 불필요
             heappush(end_times,end) # 이번 예약 종료시간 end_times에 추가
             eet = heappop(end_times) # 가장 빠른 퇴실시간 초기화
-    print(room_cnt==len(end_times))
     return room_cnt
